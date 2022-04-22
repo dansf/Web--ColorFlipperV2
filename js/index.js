@@ -10,9 +10,14 @@ const loadPage = () => {
     liHSL = document.createElement("li"),
     aLiRGBA = document.createElement("a"),
     aLiHEX = document.createElement("a"),
-    aLiHSL = document.createElement("a");
+    aLiHSL = document.createElement("a"),
+    main = document.createElement("main"),
+    section = document.createElement("section"),
+    divContainer = document.createElement("div"),
+    textColor = document.createElement("h2"),
+    button = document.createElement("button");
 
-  body.append(header);
+  body.append(header, main);
   header.append(nav);
   nav.append(logoLink, menuContainer);
   logoLink.append("Color Flipper 🎨");
@@ -24,51 +29,128 @@ const loadPage = () => {
   aLiRGBA.append("RGBA");
   aLiHEX.append("HEX");
   aLiHSL.append("HSL");
+  main.append(section);
+  section.append(divContainer);
+  divContainer.append(textColor, button);
+  button.append("click me");
+
+  const displayFlex = (display) => {
+    display.style.display = "flex";
+    display.style.alignItems = "center";
+    display.style.justifyContent = "center";
+  };
+
+  const fontCursive = (font) => {
+    font.style.color = "white";
+    font.style.fontFamily = "Poppins";
+    font.style.fontSize = "1rem";
+    font.style.letterSpacing = "5px";
+  };
+
+  const styleAnchorLi = (option) => {
+    option.style.cursor = "pointer";
+
+    option.addEventListener("mouseover", () => {
+      option.style.color = "red";
+      option.style.transition = ".3s";
+
+      option.addEventListener("mouseleave", () => {
+        option.style.color = "white";
+        option.style.transition = ".3s";
+      });
+    });
+  };
+
+  const styleButton = (option) => {
+    option.style.outline = "none";
+    option.style.padding = ".55rem 1.3rem";
+    option.style.color = "black";
+    option.style.backgroundColor = "transparent";
+    option.style.fontFamily = "Poppins";
+    option.style.borderRadius = "7px";
+    option.style.borderWidth = "2px";
+    option.style.borderColor = "black";
+    option.style.textTransform = "uppercase";
+    option.style.fontSize = "1rem";
+    option.style.fontWeight = "600";
+    option.style.letterSpacing = "2.5px";
+    option.style.cursor = "pointer";
+
+    option.addEventListener("mouseover", () => {
+      option.style.color = "white";
+      option.style.backgroundColor = "black";
+      option.style.transition = ".5s";
+
+      option.addEventListener("mouseleave", () => {
+        option.style.color = "black";
+        option.style.backgroundColor = "transparent";
+        option.style.transition = ".5s";
+      });
+    });
+  };
+
+  displayFlex(header);
+  displayFlex(nav);
+  displayFlex(ul);
+  displayFlex(divContainer);
+
+  fontCursive(header);
+  fontCursive(button);
+
+  styleAnchorLi(aLiRGBA);
+  styleAnchorLi(aLiHEX);
+  styleAnchorLi(aLiHSL);
+
+  styleButton(button);
 
   const stylesHeader = ((header) => {
     header.style.height = "3.5rem";
     header.style.backgroundColor = "black";
-    header.style.color = "white";
-    header.style.display = "flex";
-    header.style.fontFamily = "Square peg";
-    header.style.fontSize = "1.5rem";
-    header.style.letterSpacing = ".2rem";
     header.style.padding = "1rem";
   })(header);
 
   const styleNav = ((nav) => {
-    nav.style.display = "flex";
-    nav.style.alignItems = "center";
-    nav.style.justifyContent = "space-between";
     nav.style.width = "100%";
-    // nav.style.border = "1px solid red"
+    nav.style.maxWidth = "968px";
+    nav.style.justifyContent = "space-between";
   })(nav);
 
   const stylesUl = ((ul) => {
-    ul.style.display = "flex";
-    ul.style.alignItems = "center";
-    ul.style.justifyContent = "center";
     ul.style.listStyle = "none";
     ul.style.columnGap = "1rem";
     ul.style.color = "white";
   })(ul);
 
-  const styleALi = ((aLiRGBA, aLiHEX, aLiHSL) => {
-    aLiRGBA.style.cursor = "pointer";
-    aLiRGBA.addEventListener("mouseover", () => {
-      aLiRGBA.style.color = "red";
-      aLiRGBA.style.transition = ".3s";
+  const styleDiv = ((div) => {
+    div.style.height = "calc(100vh - 3.5rem)";
+    div.style.placeItems = "center";
+    div.style.flexDirection = "column";
+    div.style.rowGap = "2rem";
+  })(divContainer);
 
-      aLiRGBA.addEventListener("mouseleave", () => {
-        aLiRGBA.style.color = "white";
-        aLiRGBA.style.transition = ".3s";
-      }
-      )
-    }),
+  // TODO tirar o "text.append"
+  const styleTextColor = ((text) => {
+    text.innerText = "Background Color : ";
+    text.style.backgroundColor = "black";
+    text.style.color = "white";
+    text.style.fontFamily = "Poppins";
+    text.style.padding = ".75rem";
+    text.style.borderRadius = "10px";
+    text.style.letterSpacing = "5px";
+    text.style.fontSize = "2rem";
+  })(textColor);
 
-    aLiHEX.style.cursor = "pointer";
-    aLiHSL.style.cursor = "pointer";
-  })(aLiRGBA, aLiHEX, aLiHSL);
+  // Gerando a troca de cores
+  var listColors = ["purple", "red", "blue", "ciano", "green", "yellow"];
+
+  const setColor = (div, text, listColors) => {
+    for (var i = 0; i < listColors.length; i++) {
+      div.style.backgroundColor = listColors[i];
+      text.innerText = `Background Color : ${listColors[i]}`;
+    }
+  };
+
+  button.addEventListener("click", setColor(divContainer, textColor, listColors));
 };
 
 window.onload = loadPage;
