@@ -101,6 +101,7 @@ fontCursive(button);
 styleAnchorLi(aLiRGBA);
 styleAnchorLi(aLiHEX);
 styleAnchorLi(aLiHSL);
+styleAnchorLi(logoLink)
 
 styleButton(button);
 
@@ -109,7 +110,6 @@ const stylesHeader = (header) => {
   header.style.backgroundColor = "black";
   header.style.padding = "1rem";
   header.style.fontWeight = "600";
-  header.style.boxShadow = "0px 3px 5px 10px ";
 };
 
 const styleNav = (nav) => {
@@ -165,6 +165,8 @@ const setColor = (div, text, listColors) => {
   styleAnchorLi(aLiRGBA, listColors[index]);
   styleAnchorLi(aLiHEX, listColors[index]);
   styleAnchorLi(aLiHSL, listColors[index]);
+  styleAnchorLi(logoLink, listColors[index]);
+
 
   if (i == 6) i = 0;
 };
