@@ -101,7 +101,7 @@ fontCursive(button);
 styleAnchorLi(aLiRGBA);
 styleAnchorLi(aLiHEX);
 styleAnchorLi(aLiHSL);
-styleAnchorLi(logoLink)
+styleAnchorLi(logoLink);
 
 styleButton(button);
 
@@ -129,7 +129,7 @@ const styleDiv = (div) => {
   div.style.placeItems = "center";
   div.style.flexDirection = "column";
   div.style.rowGap = "2rem";
-  div.style.backgroundColor = "white"
+  div.style.backgroundColor = "white";
 };
 
 const styleTextColor = (text) => {
@@ -151,14 +151,14 @@ styleTextColor(textColor);
 
 // Gerando a troca de cores
 const listColors = ["Cyan", "Red", "Blue", "Purple", "Green", "Yellow"];
-textColor.innerText = `Background Color : White`
+textColor.innerText = `Background Color : White`;
 
-var index, i = 0;
+var index,
+  i = 0, localI;
 
 const setColor = (div, text, listColors) => {
   index = i;
   i++;
-  console.log(listColors[index]);
   div.style.backgroundColor = listColors[index];
   text.innerText = `Background Color : ${listColors[index]}`;
 
@@ -167,8 +167,10 @@ const setColor = (div, text, listColors) => {
   styleAnchorLi(aLiHSL, listColors[index]);
   styleAnchorLi(logoLink, listColors[index]);
 
-
   if (i == 6) i = 0;
+
+  localStorage.setItem(listColors[index]);
+  localI = localStorage.getItem(listColors[index]);
 };
 
 // setColor(divContainer, textColor, listColors);
@@ -176,3 +178,8 @@ const setColor = (div, text, listColors) => {
 button.addEventListener("click", () =>
   setColor(divContainer, textColor, listColors)
 );
+
+window.onload = () => {
+  divContainer.style.backgroundColor = localI;
+  console.log(localI)
+}

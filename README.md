@@ -4,8 +4,8 @@
 <a href="https://web-color-flipperv2.vercel.app/">Color-FlipperV2.com</a>
 
 <h4>Description</h4>
-<p>Honestly I do not know why I'm doing this! 🙃 <br>
-The code was made only with JavaScript.</p>
+<p>Honestly I do not know why I did this! 🙃 <br>
+The code was made only in JavaScript.</p>
 
 <h4>Tools</h4>
 <ul><li>JavaScript</li></ul>
